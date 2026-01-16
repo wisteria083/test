@@ -1,139 +1,297 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>非エンジニアのためのY-BASEガイド</title>
-    <style>
-        :root {
-            /* メインカラーを赤に変更 */
-            --primary-color: #c62828; /* 深みのあるレッド */
-            --secondary-color: #ffebee; /* 薄いピンクの背景 */
-            --accent-color: #f57c00; /* アクセントは視認性の高いオレンジ */
-            --text-color: #333;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Y-BASE - 山口の未来をあそぼう</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Noto Sans JP', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: #000; color: #fff; }
+
+    .hero-bg {
+      background: radial-gradient(ellipse at 50% 0%, #3a1a1a 0%, #000 60%);
+    }
+
+    .section { min-height: 100vh; }
+
+    .glow-red { text-shadow: 0 0 40px rgba(255,68,68,0.5); }
+    .glow-orange { text-shadow: 0 0 40px rgba(255,149,0,0.5); }
+
+    .card-glow {
+      box-shadow: 0 0 60px rgba(255,68,68,0.15);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff4444 0%, #ff9500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: { red: '#ff4444', orange: '#ff9500', yellow: '#ffd700', blue: '#00e1ff' }
+          }
         }
-        body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            background-color: #fff;
-        }
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .intro {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .card {
-            background: var(--secondary-color);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-top: 5px solid var(--primary-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .card h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-        .section-title {
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-        .cta-box {
-            /* 薄い赤系に変更 */
-            background: #ffcdd2;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 3rem;
-        }
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 3rem;
-        }
-        .highlight {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-    </style>
+      }
+    }
+  </script>
 </head>
 <body>
 
-<header>
-    <h1>山口の未来をあそぼう。</h1>
-    <p>非エンジニアのための「Y-BASE」超入門</p>
-</header>
-
-<div class="container">
-    <section class="intro">
-        <h2 class="section-title">Y-BASEってなに？</h2>
-        <p>山口市の商店街にある「やまぐちデジラボ Y-BASE」は、最新技術を<span class="highlight">「見て・触れて・相談できる」</span>場所。エンジニアのためだけの場所だと思っていませんか？実は、ビジネスのヒントを探す経営者から、新しいもの好きの一般の方まで、誰でも大歓迎なスポットなんです。</p>
-    </section>
-
-    <div class="card-container">
-        <div class="card">
-            <h3>① 最新ガジェット体験</h3>
-            <p>VRゴーグルや高精細な3Dスキャナなど、普段触ることのない最新機器がずらり。使い方はスタッフさんが丁寧に教えてくれます。</p>
-        </div>
-        <div class="card">
-            <h3>② DXの「困った」を相談</h3>
-            <p>「お店の予約を自動化したい」「デジタル化って何から始めれば？」といった悩みを、コンシェルジュが一緒に考えてくれます。</p>
-        </div>
-        <div class="card">
-            <h3>③ 誰でも使えるコワーキング</h3>
-            <p>洗練された空間で仕事や作業が可能。山口のデジタル推進の空気を感じながら、クリエイティブな時間を過ごせます。</p>
-        </div>
+  <!-- ========== HERO ========== -->
+  <section class="hero-bg section flex flex-col justify-center items-center text-center px-8 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-red rounded-full blur-[150px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-orange rounded-full blur-[150px]"></div>
     </div>
 
-    <section>
-        <h2 class="section-title">ここが「非エンジニア」に優しい！</h2>
-        <ul>
-            <li><strong>専門用語は不要：</strong> 「こんなことしたい」というイメージだけでOK。</li>
-            <li><strong>手ぶらでOK：</strong> 最新設備が揃っているので、好奇心だけ持っていけば大丈夫。</li>
-            <li><strong>街歩きのついでに：</strong> 山口市中心商店街（どうもん）にあるから、買い物ついでに寄れます。</li>
-        </ul>
-    </section>
+    <div class="relative z-10 fade-in">
+      <p class="text-neon-orange text-2xl md:text-3xl font-bold tracking-[0.3em] mb-8 animate-pulse-slow">YAMAGUCHI DIGITAL LABO</p>
 
-    <div class="cta-box">
-        <h2>まずは「見学」から始めてみませんか？</h2>
-        <p>「難しいことはわからないけど、面白そう」<br>その気持ちが、あなたのビジネスや生活を変える第一歩になります。</p>
-        <p><strong>場所：</strong> 山口県山口市道場門前2-1-1<br>
-        <strong>公式サイト：</strong> <a href="https://y-base.jp/" target="_blank">https://y-base.jp/</a></p>
+      <h1 class="text-6xl md:text-9xl font-black mb-8 leading-tight">
+        <span class="text-white">山口の未来を</span><br>
+        <span class="gradient-text">あそぼう。</span>
+      </h1>
+
+      <p class="text-2xl md:text-4xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
+        最新技術を<span class="text-white font-bold">見て・触れて・相談できる</span><br>
+        <span class="text-neon-red font-bold">誰でも大歓迎</span>のデジタル体験スポット
+      </p>
+
+      <div class="animate-bounce mt-8">
+        <svg class="w-12 h-12 mx-auto text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
     </div>
-</div>
+  </section>
 
-<footer>
-    <p>&copy; 2026 Y-BASE Unofficial Fan Guide</p>
-</footer>
+  <!-- ========== WHAT IS Y-BASE ========== -->
+  <section class="section flex flex-col justify-center px-8 md:px-20 py-32" style="background: linear-gradient(180deg, #000 0%, #1a0a0a 50%, #000 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="fade-in text-center mb-16">
+        <p class="text-neon-red text-xl md:text-2xl font-bold tracking-widest mb-4">WHAT IS Y-BASE</p>
+        <h2 class="text-5xl md:text-8xl font-black text-white mb-6">
+          Y-BASEって<span class="text-neon-orange">なに？</span>
+        </h2>
+      </div>
 
+      <div class="fade-in bg-neon-red/10 border-4 border-neon-red/50 rounded-3xl p-12 text-center card-glow mb-16">
+        <h3 class="text-3xl md:text-5xl font-black text-white mb-6">
+          <span class="text-neon-orange">エンジニア専用</span>じゃない。
+        </h3>
+        <p class="text-2xl text-slate-300">
+          ビジネスのヒントを探す<span class="text-white font-bold">経営者</span>から、<br>
+          新しいもの好きの<span class="text-white font-bold">一般の方</span>まで、<br>
+          <span class="text-neon-red font-bold">誰でも大歓迎</span>のスポットです。
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="fade-in bg-gradient-to-b from-neon-red/20 to-transparent border border-neon-red/30 rounded-3xl p-10 text-center">
+          <div class="text-7xl mb-6">🥽</div>
+          <h3 class="text-3xl font-black text-neon-red mb-4">見る</h3>
+          <p class="text-xl text-slate-400">
+            VR・AR・最新ガジェットを<span class="text-white">実際に目で見て体感</span>
+          </p>
+        </div>
+
+        <div class="fade-in bg-gradient-to-b from-neon-orange/20 to-transparent border border-neon-orange/30 rounded-3xl p-10 text-center">
+          <div class="text-7xl mb-6">🖐️</div>
+          <h3 class="text-3xl font-black text-neon-orange mb-4">触れる</h3>
+          <p class="text-xl text-slate-400">
+            3Dスキャナ・最新デバイスを<span class="text-white">自分の手で操作</span>
+          </p>
+        </div>
+
+        <div class="fade-in bg-gradient-to-b from-neon-yellow/20 to-transparent border border-neon-yellow/30 rounded-3xl p-10 text-center">
+          <div class="text-7xl mb-6">💬</div>
+          <h3 class="text-3xl font-black text-neon-yellow mb-4">相談</h3>
+          <p class="text-xl text-slate-400">
+            DXの悩みを<span class="text-white">コンシェルジュに気軽に相談</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="section flex flex-col justify-center px-8 md:px-20 py-32" style="background: linear-gradient(180deg, #000 0%, #0a1a1a 50%, #000 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="fade-in mb-16">
+        <p class="text-neon-orange text-xl md:text-2xl font-bold tracking-widest mb-4">FEATURES</p>
+        <h2 class="text-5xl md:text-8xl font-black text-white">
+          できること<span class="text-neon-orange glow-orange">3選</span>
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        <div class="fade-in bg-gradient-to-r from-neon-red/20 to-transparent border-l-4 border-neon-red rounded-r-3xl p-10">
+          <div class="flex items-center gap-6 mb-6">
+            <span class="w-16 h-16 rounded-full bg-neon-red/30 flex items-center justify-center text-3xl font-black text-neon-red">1</span>
+            <h3 class="text-3xl font-black text-white">最新ガジェット体験</h3>
+          </div>
+          <p class="text-xl text-slate-300 leading-relaxed">
+            <span class="text-white font-bold">VRゴーグル</span>や<span class="text-white font-bold">高精細3Dスキャナ</span>など、普段触ることのない最新機器がずらり。
+            使い方は<span class="text-neon-red font-bold">スタッフさんが丁寧に教えてくれる</span>から安心。
+          </p>
+        </div>
+
+        <div class="fade-in bg-gradient-to-r from-neon-orange/20 to-transparent border-l-4 border-neon-orange rounded-r-3xl p-10">
+          <div class="flex items-center gap-6 mb-6">
+            <span class="w-16 h-16 rounded-full bg-neon-orange/30 flex items-center justify-center text-3xl font-black text-neon-orange">2</span>
+            <h3 class="text-3xl font-black text-white">DXの「困った」を相談</h3>
+          </div>
+          <p class="text-xl text-slate-300 leading-relaxed">
+            「<span class="text-white font-bold">お店の予約を自動化したい</span>」「<span class="text-white font-bold">デジタル化って何から始めれば？</span>」
+            そんな悩みを<span class="text-neon-orange font-bold">コンシェルジュが一緒に考えてくれる</span>。
+          </p>
+        </div>
+
+        <div class="fade-in bg-gradient-to-r from-neon-yellow/20 to-transparent border-l-4 border-neon-yellow rounded-r-3xl p-10">
+          <div class="flex items-center gap-6 mb-6">
+            <span class="w-16 h-16 rounded-full bg-neon-yellow/30 flex items-center justify-center text-3xl font-black text-neon-yellow">3</span>
+            <h3 class="text-3xl font-black text-white">誰でも使えるコワーキング</h3>
+          </div>
+          <p class="text-xl text-slate-300 leading-relaxed">
+            <span class="text-white font-bold">洗練された空間</span>で仕事や作業が可能。
+            山口のデジタル推進の空気を感じながら、<span class="text-neon-yellow font-bold">クリエイティブな時間</span>を過ごせる。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY FRIENDLY ========== -->
+  <section class="section flex flex-col justify-center items-center px-8 md:px-20 py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #000 0%, #1a1a0a 50%, #000 100%);">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-orange rounded-full blur-[200px]"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="fade-in text-center mb-16">
+        <p class="text-neon-yellow text-xl md:text-2xl font-bold tracking-widest mb-4">WHY FRIENDLY</p>
+        <h2 class="text-5xl md:text-8xl font-black text-white mb-8">
+          「<span class="text-neon-red">非エンジニア</span>」に<br>優しい理由
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="fade-in bg-white/5 border border-neon-red/40 rounded-3xl p-10 text-center hover:border-neon-red/80 transition-all">
+          <div class="text-7xl mb-6 animate-float">🗣️</div>
+          <h3 class="text-2xl font-black text-neon-red mb-4">専門用語は不要</h3>
+          <p class="text-xl text-slate-400">
+            「<span class="text-white">こんなことしたい</span>」という<br>イメージだけでOK
+          </p>
+        </div>
+
+        <div class="fade-in bg-white/5 border border-neon-orange/40 rounded-3xl p-10 text-center hover:border-neon-orange/80 transition-all">
+          <div class="text-7xl mb-6 animate-float" style="animation-delay: 0.5s;">👐</div>
+          <h3 class="text-2xl font-black text-neon-orange mb-4">手ぶらでOK</h3>
+          <p class="text-xl text-slate-400">
+            最新設備が揃っているので<br><span class="text-white">好奇心だけ</span>持っていけば大丈夫
+          </p>
+        </div>
+
+        <div class="fade-in bg-white/5 border border-neon-yellow/40 rounded-3xl p-10 text-center hover:border-neon-yellow/80 transition-all">
+          <div class="text-7xl mb-6 animate-float" style="animation-delay: 1s;">🛍️</div>
+          <h3 class="text-2xl font-black text-neon-yellow mb-4">街歩きのついでに</h3>
+          <p class="text-xl text-slate-400">
+            山口市中心商店街（どうもん）<br><span class="text-white">買い物ついでに</span>寄れる
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section flex flex-col justify-center items-center px-8 md:px-20 py-32 relative overflow-hidden" style="background: radial-gradient(ellipse at 50% 100%, #3a1a1a 0%, #000 60%);">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-neon-red rounded-full blur-[150px]"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-orange rounded-full blur-[150px]"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto relative z-10 text-center">
+      <div class="fade-in">
+        <p class="text-slate-400 text-xl md:text-2xl font-bold tracking-widest mb-8">LET'S START</p>
+
+        <h2 class="text-5xl md:text-8xl font-black text-white mb-8">
+          まずは<span class="gradient-text">「見学」</span>から
+        </h2>
+
+        <p class="text-2xl md:text-3xl text-slate-300 mb-16">
+          「難しいことはわからないけど、<span class="text-white font-bold">面白そう</span>」<br>
+          その気持ちが、あなたの<span class="text-neon-red font-bold">ビジネスや生活を変える第一歩</span>に。
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="fade-in bg-white/5 border border-white/20 rounded-3xl p-8">
+            <div class="text-5xl mb-4">📍</div>
+            <h3 class="text-2xl font-bold text-white mb-2">場所</h3>
+            <p class="text-xl text-slate-400">山口県山口市道場門前2-1-1</p>
+          </div>
+          <div class="fade-in bg-white/5 border border-white/20 rounded-3xl p-8">
+            <div class="text-5xl mb-4">🌐</div>
+            <h3 class="text-2xl font-bold text-white mb-2">公式サイト</h3>
+            <a href="https://y-base.jp/" target="_blank" class="text-xl text-neon-red hover:text-neon-orange transition-colors">https://y-base.jp/</a>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <a href="https://y-base.jp/" target="_blank" class="inline-block bg-gradient-to-r from-neon-red to-neon-orange text-white text-2xl font-black py-6 px-16 rounded-full hover:scale-105 transition-transform">
+            Y-BASEを見てみる →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="py-12 px-8 text-center border-t border-white/10">
+    <p class="text-slate-500 text-lg">© 2026 Y-BASE Unofficial Fan Guide</p>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

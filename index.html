@@ -1,1 +1,137 @@
-<p>私のHPです</p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非エンジニアのためのY-BASEガイド</title>
+    <style>
+        :root {
+            --primary-color: #005bac;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ff9800;
+            --text-color: #333;
+        }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            background-color: #fff;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .card {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 5px solid var(--primary-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        .section-title {
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        .cta-box {
+            background: #e3f2fd;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 3rem;
+        }
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>山口の未来をあそぼう。</h1>
+    <p>非エンジニアのための「Y-BASE」超入門</p>
+</header>
+
+<div class="container">
+    <section class="intro">
+        <h2 class="section-title">Y-BASEってなに？</h2>
+        <p>山口市の商店街にある「やまぐちデジラボ Y-BASE」は、最新技術を<span class="highlight">「見て・触れて・相談できる」</span>場所。エンジニアのためだけの場所だと思っていませんか？実は、ビジネスのヒントを探す経営者から、新しいもの好きの一般の方まで、誰でも大歓迎なスポットなんです。</p>
+    </section>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>① 最新ガジェット体験</h3>
+            <p>VRゴーグルや高精細な3Dスキャナなど、普段触ることのない最新機器がずらり。使い方はスタッフさんが丁寧に教えてくれます。</p>
+        </div>
+        <div class="card">
+            <h3>② DXの「困った」を相談</h3>
+            <p>「お店の予約を自動化したい」「デジタル化って何から始めれば？」といった悩みを、コンシェルジュが一緒に考えてくれます。</p>
+        </div>
+        <div class="card">
+            <h3>③ 誰でも使えるコワーキング</h3>
+            <p>洗練された空間で仕事や作業が可能。山口のデジタル推進の空気を感じながら、クリエイティブな時間を過ごせます。</p>
+        </div>
+    </div>
+
+    <section>
+        <h2 class="section-title">ここが「非エンジニア」に優しい！</h2>
+        <ul>
+            <li><strong>専門用語は不要：</strong> 「こんなことしたい」というイメージだけでOK。</li>
+            <li><strong>手ぶらでOK：</strong> 最新設備が揃っているので、好奇心だけ持っていけば大丈夫。</li>
+            <li><strong>街歩きのついでに：</strong> 山口市中心商店街（どうもん）にあるから、買い物ついでに寄れます。</li>
+        </ul>
+    </section>
+
+    <div class="cta-box">
+        <h2>まずは「見学」から始めてみませんか？</h2>
+        <p>「難しいことはわからないけど、面白そう」<br>その気持ちが、あなたのビジネスや生活を変える第一歩になります。</p>
+        <p><strong>場所：</strong> 山口県山口市道場門前2-1-1<br>
+        <strong>公式サイト：</strong> <a href="https://y-base.jp/" target="_blank">https://y-base.jp/</a></p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Y-BASE Unofficial Fan Guide</p>
+</footer>
+
+</body>
+</html>
